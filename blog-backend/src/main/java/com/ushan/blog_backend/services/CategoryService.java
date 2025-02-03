@@ -1,0 +1,9 @@
+package com.ushan.blog_backend.services;
+
+import com.ushan.blog_backend.domain.entities.Category;
+
+import java.util.List;
+
+public interface CategoryService {
+    List<Category> listCategories();
+}
