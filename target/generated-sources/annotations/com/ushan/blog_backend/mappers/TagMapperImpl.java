@@ -1,30 +1,30 @@
 package com.ushan.blog_backend.mappers;
 
-import com.ushan.blog_backend.domain.dtos.TagResponse;
+import com.ushan.blog_backend.domain.dtos.TagDto;
 import com.ushan.blog_backend.domain.entities.Tag;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-08T22:46:56+0530",
+    date = "2025-02-09T17:14:59+0530",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class TagMapperImpl implements TagMapper {
 
     @Override
-    public TagResponse toTagResponse(Tag tag) {
+    public TagDto toTagResponse(Tag tag) {
         if ( tag == null ) {
             return null;
         }
 
-        TagResponse.TagResponseBuilder tagResponse = TagResponse.builder();
+        TagDto.TagDtoBuilder tagDto = TagDto.builder();
 
-        tagResponse.postCount( calculatePostCount( tag.getPosts() ) );
-        tagResponse.id( tag.getId() );
-        tagResponse.name( tag.getName() );
+        tagDto.postCount( calculatePostCount( tag.getPosts() ) );
+        tagDto.id( tag.getId() );
+        tagDto.name( tag.getName() );
 
-        return tagResponse.build();
+        return tagDto.build();
     }
 }

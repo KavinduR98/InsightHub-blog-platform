@@ -1,7 +1,7 @@
 package com.ushan.blog_backend.mappers;
 
 import com.ushan.blog_backend.domain.PostStatus;
-import com.ushan.blog_backend.domain.dtos.TagResponse;
+import com.ushan.blog_backend.domain.dtos.TagDto;
 import com.ushan.blog_backend.domain.entities.Post;
 import com.ushan.blog_backend.domain.entities.Tag;
 import org.mapstruct.Mapper;
@@ -15,7 +15,7 @@ import java.util.Set;
 public interface TagMapper {
 
     @Mapping(target = "postCount", source = "posts", qualifiedByName = "calculatePostCount")
-    TagResponse toTagResponse(Tag tag );
+    TagDto toTagResponse(Tag tag );
 
     @Named("calculatePostCount")
     default Integer calculatePostCount(Set<Post> posts){
