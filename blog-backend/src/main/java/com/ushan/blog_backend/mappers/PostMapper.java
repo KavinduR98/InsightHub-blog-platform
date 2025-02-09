@@ -1,5 +1,7 @@
 package com.ushan.blog_backend.mappers;
 
+import com.ushan.blog_backend.domain.CreatePostRequest;
+import com.ushan.blog_backend.domain.dtos.CreatePostRequestDto;
 import com.ushan.blog_backend.domain.dtos.PostDto;
 import com.ushan.blog_backend.domain.entities.Post;
 import org.mapstruct.Mapper;
@@ -14,4 +16,5 @@ public interface PostMapper {
     @Mapping(target = "tags", source = "tags")
     PostDto toDto(Post post);
 
+    CreatePostRequest toCreatePostRequest(CreatePostRequestDto dto);
 }

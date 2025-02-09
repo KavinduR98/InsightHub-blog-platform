@@ -1,7 +1,9 @@
 package com.ushan.blog_backend.mappers;
 
+import com.ushan.blog_backend.domain.CreatePostRequest;
 import com.ushan.blog_backend.domain.dtos.AuthorDto;
 import com.ushan.blog_backend.domain.dtos.CategoryDto;
+import com.ushan.blog_backend.domain.dtos.CreatePostRequestDto;
 import com.ushan.blog_backend.domain.dtos.PostDto;
 import com.ushan.blog_backend.domain.dtos.TagDto;
 import com.ushan.blog_backend.domain.entities.Category;
@@ -10,12 +12,13 @@ import com.ushan.blog_backend.domain.entities.Tag;
 import com.ushan.blog_backend.domain.entities.User;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-09T17:15:00+0530",
+    date = "2025-02-09T22:49:05+0530",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -40,6 +43,26 @@ public class PostMapperImpl implements PostMapper {
         postDto.updatedAt( post.getUpdatedAt() );
 
         return postDto.build();
+    }
+
+    @Override
+    public CreatePostRequest toCreatePostRequest(CreatePostRequestDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        CreatePostRequest.CreatePostRequestBuilder createPostRequest = CreatePostRequest.builder();
+
+        createPostRequest.title( dto.getTitle() );
+        createPostRequest.content( dto.getContent() );
+        createPostRequest.categoryId( dto.getCategoryId() );
+        Set<UUID> set = dto.getTagIds();
+        if ( set != null ) {
+            createPostRequest.tagIds( new LinkedHashSet<UUID>( set ) );
+        }
+        createPostRequest.status( dto.getStatus() );
+
+        return createPostRequest.build();
     }
 
     protected AuthorDto userToAuthorDto(User user) {
