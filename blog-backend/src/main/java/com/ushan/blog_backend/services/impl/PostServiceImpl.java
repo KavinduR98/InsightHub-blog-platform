@@ -4,6 +4,7 @@ import com.ushan.blog_backend.domain.PostStatus;
 import com.ushan.blog_backend.domain.entities.Category;
 import com.ushan.blog_backend.domain.entities.Post;
 import com.ushan.blog_backend.domain.entities.Tag;
+import com.ushan.blog_backend.domain.entities.User;
 import com.ushan.blog_backend.repository.PostRepository;
 import com.ushan.blog_backend.services.CategoryService;
 import com.ushan.blog_backend.services.PostService;
@@ -52,6 +53,11 @@ public class PostServiceImpl implements PostService {
             );
         }
         return postRepository.findAllByStatus(PostStatus.PUBLISHED);
+    }
+
+    @Override
+    public List<Post> getDraftPosts(User user) {
+        return postRepository.findAllByAuthorAndStatus(user, PostStatus.DRAFT);
     }
 
 }
