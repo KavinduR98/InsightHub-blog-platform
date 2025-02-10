@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-10T12:00:58+0530",
+    date = "2025-02-10T12:26:36+0530",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -37,6 +37,7 @@ public class PostMapperImpl implements PostMapper {
         postDto.author( userToAuthorDto( post.getAuthor() ) );
         postDto.category( categoryToCategoryDto( post.getCategory() ) );
         postDto.tags( tagSetToTagDtoSet( post.getTags() ) );
+        postDto.status( post.getStatus() );
         postDto.id( post.getId() );
         postDto.title( post.getTitle() );
         postDto.content( post.getContent() );
@@ -83,6 +84,7 @@ public class PostMapperImpl implements PostMapper {
         if ( set != null ) {
             updatePostRequest.tagIds( new LinkedHashSet<UUID>( set ) );
         }
+        updatePostRequest.status( dto.getStatus() );
 
         return updatePostRequest.build();
     }
